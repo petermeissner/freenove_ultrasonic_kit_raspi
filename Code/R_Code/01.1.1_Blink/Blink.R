@@ -15,10 +15,12 @@ blink_once <- function (on_s = 1, off_s = 1) {
 	
 	# turn LED on and wait 
 	write_digital(0, 1)
+	cat("LED on...\n")
 	Sys.sleep(on_s)
 	
 	# turn LED off and wait
 	write_digital(0, 0)
+	cat("LED off...\n")
 	Sys.sleep(off_s)
 }
 
