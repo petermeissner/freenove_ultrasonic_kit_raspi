@@ -25,11 +25,11 @@ int main(void)
 		
 		if(digitalRead(buttonPin) == LOW){ //button has pressed down
 			digitalWrite(ledPin, HIGH);   //led on
-			printf("led on...\n");
+			printf("\rled on... ");
 		}
 		else {				//button has released 
 			digitalWrite(ledPin, LOW);   //led off
-			printf("...led off\n");
+			printf("\r...led off");
 		}
 	}
 
