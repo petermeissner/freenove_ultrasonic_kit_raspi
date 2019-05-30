@@ -27,6 +27,6 @@ int main(void){
 		analogWrite(pinbase+0,value);
 		voltage = (float)value / 255.0 * 3.3;  // calculate voltage
 		printf("ADC value : %d  ,\tVoltage : %.2fV\n",value,voltage);
-		delay(100);
+		delay(10);
 	}
 }
