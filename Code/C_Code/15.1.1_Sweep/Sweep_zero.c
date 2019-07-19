@@ -64,20 +64,18 @@ int main(void)
 
     // initialize PMW pin of servo
     servoInit(servoPin);
-    while(1){
-        // make servo rotate from minimum angle to maximum angle
-        for ( i = SERVO_MIN_MS; i < SERVO_MAX_MS; i++){
-            servoWriteMS(servoPin,i);
-            delay(10);
-        }
-        delay(500);
-	//make servo rotate from maximum angle to minimum angle
-        for ( i = SERVO_MAX_MS; i > SERVO_MIN_MS; i--){
-            servoWriteMS(servoPin,i);
-            delay(10);
-        }
-        delay(500);
+    // make servo rotate from minimum angle to maximum angle
+    //for ( i = SERVO_MIN_MS; i < SERVO_MAX_MS; i++){
+    //    servoWriteMS(servoPin,i);
+    //    delay(10);
+    //}
+
+    //make servo rotate from maximum angle to minimum angle
+    for ( i = SERVO_MAX_MS; i > SERVO_MIN_MS; i--){
+        servoWriteMS(servoPin,i);
+        delay(10);
     }
+    
     return 0;
 }
 

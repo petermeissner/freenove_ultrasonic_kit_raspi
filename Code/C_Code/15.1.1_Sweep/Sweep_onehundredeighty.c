@@ -23,6 +23,8 @@
 
 
 // ????
+// function returning long
+// 
 long map(long value,long fromLow,long fromHigh,long toLow,long toHigh){
     return (toHigh-toLow)*(value-fromLow) / (fromHigh-fromLow) + toLow;
 }
@@ -34,20 +36,10 @@ void servoInit(int pin){
 
 // Specif a certain rotation angle (0-180) for the servo
 void servoWrite(int pin, int angle){
-    if(angle > 180)
-        angle = 180;
-    if(angle < 0)
-        angle = 0;
-    softPwmWrite(pin,map(angle,0,180,SERVO_MIN_MS,SERVO_MAX_MS));
-}
-
-// specific the unit for pulse(5-25ms) with specific duration output by servo pin: 0.1ms
-void servoWriteMS(int pin, int ms){
-    if(ms > SERVO_MAX_MS)
-        ms = SERVO_MAX_MS;
-    if(ms < SERVO_MIN_MS)
-        ms = SERVO_MIN_MS;
-    softPwmWrite(pin,ms);
+    softPwmWrite(
+        pin,
+        map(angle, 0, 180, SERVO_MIN_MS, SERVO_MAX_MS)
+    );
 }
 
 
@@ -57,27 +49,15 @@ int main(void)
     // when initialize wiring faiservo,print messageto screen
     int i;
     if(wiringPiSetup() == -1){
-        printf("setup wiringPi faiservo !");
+        printf("setup wiringPi fail servo !\n");
         return 1;
     }
-    printf("Program is starting ...\n");
+    printf("Moving ervo to 0 degree\n");
 
     // initialize PMW pin of servo
     servoInit(servoPin);
-    while(1){
-        // make servo rotate from minimum angle to maximum angle
-        for ( i = SERVO_MIN_MS; i < SERVO_MAX_MS; i++){
-            servoWriteMS(servoPin,i);
-            delay(10);
-        }
-        delay(500);
-	//make servo rotate from maximum angle to minimum angle
-        for ( i = SERVO_MAX_MS; i > SERVO_MIN_MS; i--){
-            servoWriteMS(servoPin,i);
-            delay(10);
-        }
-        delay(500);
-    }
+    servoWrite(servoPin, 0);
+
     return 0;
 }
 
